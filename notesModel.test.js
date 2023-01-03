@@ -1,7 +1,7 @@
 const NotesModel = require('./notesModel');
 
 describe('NotesModel', () => {
-  it('returns list of all notes', () => {
+  it('begins with an empty list of notes', () => {
     const notes = new NotesModel;
 
     expect(notes.getNotes()).toEqual([]);
