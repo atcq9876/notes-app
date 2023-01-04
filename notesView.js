@@ -20,6 +20,7 @@ class NotesView {
       newNote.textContent = note;
       this.mainContainerEl.append(newNote);
     });
+    document.querySelector('#add-note-input').value = '';
   }
 
   removeNotes() {
