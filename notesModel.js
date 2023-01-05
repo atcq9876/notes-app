@@ -1,6 +1,6 @@
 class NotesModel {
   constructor() {
-    this.notes = []
+    this.notes = [];
   }
 
   getNotes() {
@@ -9,6 +9,10 @@ class NotesModel {
 
   addNote(note) {
     this.notes.push(note);
+  }
+
+  setNotes(notes) {
+    this.notes = notes;
   }
 
   reset() {
