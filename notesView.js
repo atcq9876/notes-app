@@ -7,7 +7,6 @@ class NotesView {
     this.buttonEl = document.querySelector("#add-note-btn");
     this.buttonEl.addEventListener("click", () => {
       this.client.createNote(document.querySelector("#add-note-input").value);
-      // this.model.addNote(document.querySelector("#add-note-input").value);
       this.displayNotesFromAPI();
     });
   }
