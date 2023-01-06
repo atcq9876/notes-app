@@ -22,18 +22,18 @@ class NotesView {
     });
     document.querySelector("#add-note-input").value = "";
   }
+  
+    removeNotes() {
+      const notes = document.querySelectorAll("div.note");
+      notes.forEach((note) => {
+        note.remove();
+      });
+    }
 
   displayNotesFromAPI() {
     this.client.loadNotes((data) => {
       this.model.setNotes(data);
       this.displayNotes();
-    });
-  }
-
-  removeNotes() {
-    const notes = document.querySelectorAll("div.note");
-    notes.forEach((note) => {
-      note.remove();
     });
   }
 }
