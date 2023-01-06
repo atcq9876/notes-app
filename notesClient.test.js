@@ -16,7 +16,7 @@ describe('NotesClient class', () => {
     // to "look like" as the real response as closely as
     // possible (it should have the same fields).
     fetch.mockResponseOnce(JSON.stringify({
-      note: "This note is coming from the server",
+      content: "This note is coming from the server",
     }));
 
     // 3. We call the method, giving a callback function.
@@ -24,7 +24,7 @@ describe('NotesClient class', () => {
     // We then use `expect` to assert the data from the server contain
     // what it should.
     client.loadNotes((returnedDataFromApi) => {
-      expect(returnedDataFromApi.note).toBe("This note is coming from the server");
+      expect(returnedDataFromApi.content).toBe("This note is coming from the server");
 
       // 4. Tell Jest our test can now end.
       done();

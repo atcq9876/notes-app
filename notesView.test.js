@@ -101,6 +101,22 @@ describe('notesView', () => {
     // loadNotes
     expect(mockClient.loadNotes).toHaveBeenCalledTimes(1);
   })
+
+  it('creates a new note (via the client) when user inputs value and clicks button', () => {
+    // a jest automatic mock is made of NotesModel class, containing mocked methods of this class
+    const mockModel = new NotesModel();
+    // a jest automatic mock is made of NotesClient class, containing mocked methods of this class
+    const mockClient = new NotesClient();
+    const view = new NotesView(mockModel, mockClient);
+
+    const inputEl = document.querySelector('#add-note-input');
+    inputEl.value = 'Buy rice';
+
+    const buttonEl = document.querySelector('#add-note-btn');
+    buttonEl.click();
+
+    expect(mockClient.createNote).toHaveBeenCalledTimes(1);
+  })
 });
 
 
