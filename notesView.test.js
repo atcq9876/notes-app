@@ -88,12 +88,15 @@ describe('notesView', () => {
   // });
 
   it('fetches data (notes) from an API, then sets the notes in the model class', () => {
+    // a jest automatic mock is made of NotesModel class, containing mocked methods of this class
     const mockModel = new NotesModel();
+    // a jest automatic mock is made of NotesClient class, containing mocked methods of this class
     const mockClient = new NotesClient();
     const view = new NotesView(mockModel, mockClient);
 
     view.displayNotesFromAPI();
     
+    // loadNotes
     expect(mockClient.loadNotes).toHaveBeenCalledTimes(1);
   })
 });
