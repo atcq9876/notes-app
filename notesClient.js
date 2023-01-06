@@ -1,5 +1,5 @@
 class NotesClient {
-  loadNotes(callback) {
+  loadNotes(mainCallback, errorCallback) {
     fetch("http://localhost:3000/notes")
       // response = the data fetched from the above URL
       // this is then transformed into a JS-friendly object using json()
@@ -7,13 +7,14 @@ class NotesClient {
       // data = the JS-friendly object made by json() above
       // the callback passed to loadNotes is then called on this data
       // this callback function can be seen in displayNotesFromAPI() in notesView
-      .then((data) => callback(data))
+      .then((data) => mainCallback(data))
       .catch((error) => {
         console.error('Error:', error);
+        errorCallback();
       });
   }
 
-  createNote(note) {
+  createNote(note, errorCallback) {
     const noteData = { content: note };
 
     fetch("http://localhost:3000/notes", {
@@ -29,6 +30,7 @@ class NotesClient {
       })
       .catch((error) => {
         console.error('Error:', error);
+        errorCallback();
       });
   }
 }

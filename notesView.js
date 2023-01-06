@@ -35,7 +35,16 @@ class NotesView {
     this.client.loadNotes((data) => {
       this.model.setNotes(data);
       this.displayNotes();
+    }, () => {
+      this.displayError();
     });
+  }
+
+  displayError() {
+    const errorMessage = document.createElement("div");
+    errorMessage.id = "error"
+    errorMessage.textContent = "Oops, something went wrong!"
+    this.mainContainerEl.append(errorMessage);
   }
 }
 
