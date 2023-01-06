@@ -8,6 +8,7 @@ const NotesView = require('./notesView');
 const NotesModel = require('./notesModel');
 const NotesClient = require('./notesClient');
 
+// create jest automatic mocks of the model and client classes
 jest.mock('./notesModel');
 jest.mock('./notesClient');
 
@@ -15,6 +16,7 @@ describe('notesView', () => {
 
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
+    // clear mocks before each test
     NotesModel.mockClear();
     NotesClient.mockClear();
   });
