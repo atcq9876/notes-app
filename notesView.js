@@ -4,15 +4,20 @@ class NotesView {
     this.client = client;
     this.mainContainerEl = document.querySelector("#main-container");
 
-    this.buttonEl = document.querySelector("#add-note-btn");
-    this.buttonEl.addEventListener("click", () => {
+    this.addNoteButtonEl = document.querySelector("#add-note-btn");
+    this.addNoteButtonEl.addEventListener("click", () => {
       this.client.createNote(document.querySelector("#add-note-input").value);
       this.displayNotesFromAPI();
     });
+
+    this.resetNotesButtonEl = document.querySelector("#reset-notes-btn");
+    this.resetNotesButtonEl.addEventListener("click", () => {
+      this.resetAllNotes();
+    })
   }
 
   displayNotes() {
-    this.removeNotes();
+    this.removeOldNotesWhenPopulatingPage();
     const notes = this.model.getNotes();
     notes.forEach((note) => {
       const newNote = document.createElement("div");
@@ -26,7 +31,7 @@ class NotesView {
     document.querySelector("#add-note-input").value = "";
   }
   
-  removeNotes() {
+  removeOldNotesWhenPopulatingPage() {
     const notes = document.querySelectorAll("div.note");
     notes.forEach((note) => {
       note.remove();
@@ -47,6 +52,11 @@ class NotesView {
     errorMessage.id = "error"
     errorMessage.textContent = "Oops, something went wrong!"
     this.mainContainerEl.append(errorMessage);
+  }
+
+  resetAllNotes() {
+    this.client.deleteNotes();
+    this.displayNotesFromAPI();
   }
 }
 

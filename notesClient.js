@@ -45,6 +45,16 @@ class NotesClient {
         errorCallback();
       });
   }
+
+  deleteNotes() {
+    fetch("http://localhost:3000/notes", {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => { console.log(res) })
+  }
 }
 
 module.exports = NotesClient;
