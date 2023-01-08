@@ -15,7 +15,7 @@ class NotesClient {
   }
 
   emojify(note, callback) {
-    return fetch("https://makers-emojify.herokuapp.com/", {
+    fetch("https://makers-emojify.herokuapp.com/", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
