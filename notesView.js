@@ -16,19 +16,22 @@ class NotesView {
     const notes = this.model.getNotes();
     notes.forEach((note) => {
       const newNote = document.createElement("div");
-      newNote.classList.add("note");
       newNote.textContent = note;
+      this.client.emojify(note, (response) => {
+        newNote.textContent = response.emojified_text;
+      });
+      newNote.classList.add("note");
       this.mainContainerEl.append(newNote);
     });
     document.querySelector("#add-note-input").value = "";
   }
   
-    removeNotes() {
-      const notes = document.querySelectorAll("div.note");
-      notes.forEach((note) => {
-        note.remove();
-      });
-    }
+  removeNotes() {
+    const notes = document.querySelectorAll("div.note");
+    notes.forEach((note) => {
+      note.remove();
+    });
+  }
 
   displayNotesFromAPI() {
     this.client.loadNotes((data) => {
